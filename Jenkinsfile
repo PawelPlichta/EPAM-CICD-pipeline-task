@@ -11,6 +11,15 @@ pipeline {
       }
     }
 
+    stage('Git checkout') {
+      steps {
+        script {
+          git credentialsId: 'github-id', url: 'https://github.com/PawelPlichta/EPAM-CICD-pipeline-task.git'
+        }
+
+      }
+    }
+
   }
   environment {
     registry = 'pawelpl/epam-cicd-pipeline-task'
