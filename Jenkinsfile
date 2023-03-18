@@ -17,8 +17,9 @@ pipeline {
           sh 'ls'
           sh 'pwd'
           sh 'whoami'
+          sh 'chmod +x build.sh'
           
-          sh 'build.sh'
+          sh './build.sh'
         }
 
       }
