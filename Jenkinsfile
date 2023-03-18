@@ -12,7 +12,9 @@ pipeline {
     stage('Application build') {
       steps {
         script {
-          
+          sh 'pwd'
+          sh 'ls'
+          sh 'whoami'
           sh './scripts/build.sh'
         }
 
