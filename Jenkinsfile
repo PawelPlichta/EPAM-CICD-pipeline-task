@@ -32,8 +32,8 @@ pipeline {
         script {
           
           sh 'docker build -t CICD_task_Pawel_Plichta .'
+          sh "docker tag CICD_task_Pawel_Plichta:${BUILD_NUMBER} CICD_task_Pawel_Plichta:latest "
           
-         
           
         }
 
