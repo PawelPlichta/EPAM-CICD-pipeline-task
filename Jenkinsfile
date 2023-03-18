@@ -30,8 +30,10 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         script {
-          sh 'chmod +x ./scripts/test.sh'
-          sh './scripts/test.sh'
+          checkout scm
+          sh "docker build -t CICD-practical-task_Pawel_Plichta:${BUILD_NUMBER}"
+          sh "docker tag CICD-practical-task_Pawel_Plichta:${BUILD_NUMBER} CICD-practical-task_Pawel_Plichta:latest"
+          
         }
 
       }
