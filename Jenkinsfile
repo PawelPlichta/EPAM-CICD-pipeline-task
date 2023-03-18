@@ -31,7 +31,7 @@ pipeline {
       steps {
         script {
           
-          sh 'docker build -t jenkins-docker.'
+          sh 'docker build -f Dockerfile -t jenkins-docker .'
           
          
           
