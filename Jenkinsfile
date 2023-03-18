@@ -39,6 +39,37 @@ pipeline {
 
       }
     }
+    stage('Scan Docker Image for Vulnerabilities') {
+      steps {
+        script {
+          sh 'mkdir -p reports'
+          sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl > html.tpl'
+          def vulnerabilities = sh(script: "trivy image --ignore-unfixed --exit-code 0 --severity CRITICAL,HIGH, --format template --template '@html.tpl' -o reports/image-scan.html --no-progress ${registry}:${env.BUILD_NUMBER}", returnStdout: true).trim()
+          echo "Vulnerability Report:\n${vulnerabilities}"
+          publishHTML target : [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'image-scan.html',
+                    reportName: 'Trivy Scan',
+                    reportTitles: 'Trivy Scan'
+                ]
+          sh 'trivy image --ignore-unfixed --exit-code 1 --severity CRITICAL --no-progress ${registry}:${BUILD_ID}'
+        }
+      }
+    }
+    
+    
+    stage('Docker Image Push') {
+      steps {
+        script {
+          docker.withRegistry('', 'dockerhub_id') {
+            docker.image("${registry}:${env.BUILD_NUMBER}").push('latest')
+            docker.image("${registry}:${env.BUILD_NUMBER}").push("${env.BUILD_NUMBER}")
+          }
+        }
+    }
   }
   environment {
     registry = 'pawelpl/epam-cicd-pipeline-task'
