@@ -13,7 +13,7 @@ pipeline {
       steps {
         script {
           
-          sh './scripts/build.sh'
+          sh 'sudo ./scripts/build.sh'
         }
 
       }
