@@ -40,7 +40,7 @@ pipeline {
     stage('Docker Image Push') {
       steps {
         script {
-          sh "docker push pawelpl/epam-cicd-pipeline-task:${BUILD_NUMBER}"  
+          sh "docker push pawelpl/cicd_task_pawel_plichta:${BUILD_NUMBER}"  
             echo 'Docker Image Push Completed'
           
         }
