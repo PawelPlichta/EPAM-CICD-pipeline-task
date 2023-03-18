@@ -31,7 +31,8 @@ pipeline {
       steps {
         script {
           
-          sh 'docker build –t pawelplichta:latest'
+          sh 'docker build'
+          sh 'docker –t CICD_task_Pawel_Plichta'
          
           
         }
