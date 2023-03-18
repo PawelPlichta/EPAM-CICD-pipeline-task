@@ -40,8 +40,13 @@ pipeline {
     stage('Docker Image Push') {
       steps {
         script {
-          sh "docker push ${registry}:${BUILD_NUMBER}"  
-            echo 'Docker Image Push Completed'
+          
+          docker.withRegistry('', 'dockerhub-id') {
+          
+            docker.image("${registry}:${env.BUILD_NUMBER}").push('latest')
+            docker.image("${registry}:${env.BUILD_NUMBER}").push("${env.BUILD_NUMBER}")
+            
+          }
           
         }
       }
