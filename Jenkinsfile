@@ -31,8 +31,8 @@ pipeline {
       steps {
         script {
           checkout scm
-          sh "docker build -t CICD_practical_task_Pawel_Plichta"
-          sh "docker tag CICD_practical_task_Pawel_Plichta:${BUILD_NUMBER} CICD_practical_task_Pawel_Plichta:latest"
+          sh "docker build -t CICDpracticalTaskPawelPlichta"
+         
           
         }
 
