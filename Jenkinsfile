@@ -18,7 +18,7 @@ pipeline {
           sh 'pwd'
           sh 'whoami'
           sh 'chmod +x ./scripts/build.sh'
-          sh 'yum install npm -y'
+          sh 'sudo yum install npm -y'
           sh './scripts/build.sh'
         }
 
