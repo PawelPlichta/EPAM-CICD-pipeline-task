@@ -31,7 +31,7 @@ pipeline {
       steps {
         script {
           checkout scm
-          sh 'docker build -t cicd_task_pawel_plichta'
+          sh 'docker build -t pawelplichta'
          
           
         }
