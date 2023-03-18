@@ -13,9 +13,12 @@ pipeline {
       steps {
         script {
           sh 'pwd'
+          sh ' cd scripts'
           sh 'ls'
+          sh 'pwd'
           sh 'whoami'
-          sh '/scripts/build.sh'
+          
+          sh 'build.sh'
         }
 
       }
