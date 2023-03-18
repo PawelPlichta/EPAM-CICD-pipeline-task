@@ -12,6 +12,7 @@ pipeline {
     stage('Application build') {
       steps {
         script {
+          sh "sudo chmod -R 777 '${WORKSPACE}'"
           sh './scripts/build.sh'
         }
 
