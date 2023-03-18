@@ -49,11 +49,9 @@ pipeline {
     stage('Docker Image Push') {
       steps {
         script {
-            docker.withRegistry('', 'dockerhub-id') {
-            docker.image("${registry}:${env.BUILD_NUMBER}").push('latest')
-            docker.image("${registry}:${env.BUILD_NUMBER}").push("${env.BUILD_NUMBER}")
+            sh "docker push pawelpl/epam-cicd-pipeline-task:$BUILD_NUMBER"  
             echo 'Docker Image Push Completed'
-          }
+          
         }
       }
     }
