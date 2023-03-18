@@ -15,7 +15,7 @@ pipeline {
           sh 'pwd'
           sh 'ls'
           sh 'whoami'
-          sh './scripts/build.sh'
+          sh '/scripts/build.sh'
         }
 
       }
