@@ -31,7 +31,7 @@ pipeline {
             echo 'Tests check passed'
          }
          failure {
-            echo 'Tests quality check failed'
+            echo 'Tests check failed'
          }
         }
         
