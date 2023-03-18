@@ -5,6 +5,7 @@ pipeline {
       steps {
         script {
           git branch: 'main', credentialsId: 'github-id', url: 'https://github.com/PawelPlichta/EPAM-CICD-pipeline-task.git'
+          echo 'Git Checkout Completed' 
         }
       }
     }
@@ -14,6 +15,7 @@ pipeline {
         script {
           sh 'chmod +x ./scripts/build.sh'
           sh './scripts/build.sh'
+          echo 'Application Build Completed' 
         }
       }
     }
@@ -22,7 +24,15 @@ pipeline {
         script {
           sh 'chmod +x ./scripts/test.sh'
           sh './scripts/test.sh'
-        }
+          }
+          post {
+              success {
+                  echo 'Tests check passed'
+                }
+              failure {
+                  echo 'Tests check failed'
+         }
+     }
 
       }
     }
@@ -32,6 +42,7 @@ pipeline {
           
           sh "docker build -t cicd_task_pawel_plichta:${BUILD_NUMBER} ."
           sh "docker tag cicd_task_pawel_plichta:${BUILD_NUMBER} cicd_task_pawel_plichta:latest "
+          echo 'Docker Image Build Completed' 
         }
       }
     }
@@ -41,6 +52,7 @@ pipeline {
             docker.withRegistry('', 'dockerhub-id') {
             docker.image("${registry}:${env.BUILD_NUMBER}").push('latest')
             docker.image("${registry}:${env.BUILD_NUMBER}").push("${env.BUILD_NUMBER}")
+            echo 'Docker Image Push Completed'
           }
         }
       }
