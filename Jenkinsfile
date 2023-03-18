@@ -31,8 +31,8 @@ pipeline {
       steps {
         script {
           
-          sh 'docker build'
-          sh 'docker –t CICD_task_Pawel_Plichta'
+          sh 'docker build -t jenkins-docker.'
+          
          
           
         }
