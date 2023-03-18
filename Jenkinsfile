@@ -31,8 +31,8 @@ pipeline {
       steps {
         script {
           
-          sh "docker build -t cicd_task_pawel_plichta:${BUILD_NUMBER} ."
-          sh "docker tag cicd_task_pawel_plichta:${BUILD_NUMBER} cicd_task_pawel_plichta:latest "
+          sh "docker build -t ${registry}:${BUILD_NUMBER} ."
+          sh "docker tag ${registry}:${BUILD_NUMBER} ${registry}:latest "
           echo 'Docker Image Build Completed' 
         }
       }
@@ -40,7 +40,7 @@ pipeline {
     stage('Docker Image Push') {
       steps {
         script {
-          sh "docker push pawelpl/cicd_task_pawel_plichta:${BUILD_NUMBER}"  
+          sh "docker push ${registry}:${BUILD_NUMBER}"  
             echo 'Docker Image Push Completed'
           
         }
