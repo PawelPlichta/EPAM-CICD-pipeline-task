@@ -51,6 +51,6 @@ pipeline {
     
   }
   environment {
-    registry = 'pawelpl/epam-cicd-pipeline-task'
+    registry = 'pawelpl/cicd_task_pawel_plichta'
   }
 }
