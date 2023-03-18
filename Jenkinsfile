@@ -12,14 +12,7 @@ pipeline {
     stage('Application build') {
       steps {
         script {
-          sh 'pwd'
-          sh ' cd scripts'
-          sh 'ls'
-          sh 'pwd'
-          sh 'whoami'
-          sh 'chmod +x ./scripts/build.sh'
-          sh 'sudo yum install npm -y'
-          sh './scripts/build.sh'
+             sh './scripts/build.sh'
         }
 
       }
