@@ -25,6 +25,18 @@ pipeline {
           sh 'chmod +x ./scripts/test.sh'
           sh './scripts/test.sh'
             }
+        
+        post {
+         success {
+            echo 'Tests check passed'
+         }
+         failure {
+            echo 'Tests quality check failed'
+         }
+     }
+        
+        
+        
        }
     }
     stage('Docker Image Build') {
