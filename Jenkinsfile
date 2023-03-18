@@ -30,8 +30,8 @@ pipeline {
     stage('Docker Image Build') {
       steps {
         script {
-          checkout scm
-          sh 'docker build -t pawelplichta'
+          
+          sh 'docker build –t pawelplichta:latest'
          
           
         }
