@@ -18,7 +18,15 @@ pipeline {
 
       }
     }
+    stage('Tests') {
+      steps {
+        script {
+          sh 'chmod +x ./scripts/test.sh'
+          sh './scripts/test.sh'
+        }
 
+      }
+    }
   }
   environment {
     registry = 'pawelpl/epam-cicd-pipeline-task'
